@@ -33,23 +33,34 @@ cts.Cancel(); // Скасовуємо отримання оновлень при
 
 string GetRandomQuote()
 {
-    return "Це тестова цитата Конфуція."; // Тут має бути логіка для отримання випадкової цитати з бази даних
+    //return "Це тестова цитата Конфуція."; // Тут має бути логіка для отримання випадкової цитати з бази даних
 
-    //using (var db = new DatabaseLibrary.Models.BotContext())
-    //{
-    //    var quotes = db.Quotes.ToList();
-    //    if (quotes.Count == 0)
-    //    {
-    //        return "No quotes available.";
-    //    }
+    using (var db = new DatabaseLibrary.Models.BotContext())
+    {
+        var quotes = db.Quotes.ToList();
+        if (quotes.Count == 0)
+        {
+            return "No quotes available.";
+        }
 
-    //    var random = new Random();
-    //    int index = random.Next(quotes.Count);
-    //    return quotes[index].Text;
-    //}
+        var random = new Random();
+        int index = random.Next(quotes.Count);
+        return quotes[index].Text;
+    }
 }
 
 async Task Bot_OnMessage(ITelegramBotClient bot, Telegram.Bot.Types.Update update, CancellationToken ct)
 {
     await bot.SendMessage(update.Message.Chat.Id, GetRandomQuote());    
 }
+
+
+
+/*
+  
+Data Source=SILVERSTONE\SQLEXPRESS;Initial Catalog=MyAcademy;Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=True;Trust Server Certificate=True;
+
+
+
+  
+ */
