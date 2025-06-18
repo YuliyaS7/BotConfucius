@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotConfucius", "BotConfucius\BotConfucius.csproj", "{FC69A301-0FE7-4047-B1E2-A329692C7250}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuoteDownloader", "QuoteDownloader\QuoteDownloader.csproj", "{32206E47-B78A-4EC0-9476-7B6119E3467E}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLibrary", "DatabaseLibrary\DatabaseLibrary.csproj", "{75684F93-FF2F-48EC-A441-DB26DE18D579}"
 EndProject
 Global
@@ -17,6 +19,10 @@ Global
 		{FC69A301-0FE7-4047-B1E2-A329692C7250}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC69A301-0FE7-4047-B1E2-A329692C7250}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC69A301-0FE7-4047-B1E2-A329692C7250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32206E47-B78A-4EC0-9476-7B6119E3467E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32206E47-B78A-4EC0-9476-7B6119E3467E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32206E47-B78A-4EC0-9476-7B6119E3467E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32206E47-B78A-4EC0-9476-7B6119E3467E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75684F93-FF2F-48EC-A441-DB26DE18D579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75684F93-FF2F-48EC-A441-DB26DE18D579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75684F93-FF2F-48EC-A441-DB26DE18D579}.Release|Any CPU.ActiveCfg = Release|Any CPU
