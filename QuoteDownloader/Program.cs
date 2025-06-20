@@ -2,6 +2,8 @@
 // зчитує дані з кожного файлу по рядкам
 // перевіряє, якщо текст вже є в базі даних, пропускає, якщо немає, записує в базу даних
 using DatabaseLibrary.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Linq;
@@ -13,9 +15,21 @@ class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
 
+        IConfiguration configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+
         string directoryPath = "Data";
-        using var db = new BotContext();
+
+        var contextOptions = new DbContextOptionsBuilder<BotContext>()
+        .UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+        .Options;
+
+        using var db = new BotContext(contextOptions);
         db.Database.EnsureCreated();
+
         string[] files = Directory.GetFiles(directoryPath, "*.txt");
         foreach (var file in files)
         {

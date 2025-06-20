@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using DatabaseLibrary.Models;
 
 
-// Создаём конфигурацию
 IConfiguration configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
