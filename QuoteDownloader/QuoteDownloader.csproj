@@ -15,4 +15,16 @@
     <ProjectReference Include="..\DatabaseLibrary\DatabaseLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\quotes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\quotes2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\quotes3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
