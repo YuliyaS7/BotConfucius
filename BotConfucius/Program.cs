@@ -1,8 +1,19 @@
 ﻿using Telegram.Bot;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using DatabaseLibrary.Models;
+
+
+// Создаём конфигурацию
+IConfiguration configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
 
 // телеграм бот який відповідає на будь яке питання цитатами Конфуція
 
-var token = "7619230076:AAF0j_4Lbbwp8lKzgb8UZ1tJYx-A9f4Nxzg";
+var token = configuration["TelegramBotToken"];
 var bot = new TelegramBotClient(token);
 
 //bot.OnMessage += Bot_OnMessage;
@@ -33,9 +44,11 @@ cts.Cancel(); // Скасовуємо отримання оновлень при
 
 string GetRandomQuote()
 {
-    //return "Це тестова цитата Конфуція."; // Тут має бути логіка для отримання випадкової цитати з бази даних
+    var contextOptions = new DbContextOptionsBuilder<BotContext>()
+        .UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+        .Options;
 
-    using (var db = new DatabaseLibrary.Models.BotContext())
+    using (var db = new DatabaseLibrary.Models.BotContext(contextOptions))
     {
         var quotes = db.Quotes.ToList();
         if (quotes.Count == 0)
@@ -52,6 +65,7 @@ string GetRandomQuote()
 async Task Bot_OnError(ITelegramBotClient bot, Exception exception, CancellationToken ct)
 {
     Console.WriteLine($"Error: {exception.Message}");
+    await Task.CompletedTask; // Возвращаем завершённую задачу, чтобы не блокировать поток
 }
 
 async Task Bot_OnMessage(ITelegramBotClient bot, Telegram.Bot.Types.Update update, CancellationToken ct)
@@ -62,14 +76,3 @@ async Task Bot_OnMessage(ITelegramBotClient bot, Telegram.Bot.Types.Update updat
     }
     await bot.SendMessage(update.Message.Chat.Id, GetRandomQuote());    
 }
-
-
-
-/*
-  
-Data Source=SILVERSTONE\SQLEXPRESS;Initial Catalog=MyAcademy;Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=True;Trust Server Certificate=True;
-
-
-
-  
- */
