@@ -20,7 +20,7 @@ Console.WriteLine($"Bot {me.FirstName} started");
 
 await bot.ReceiveAsync(
     updateHandler: Bot_OnMessage, // Обробник повідомлень
-    errorHandler: null, // Тут можна вказати обробник помилок, якщо потрібно
+    errorHandler: Bot_OnError, // Обробник помилок
     receiverOptions: receiverOptions,
     cancellationToken: cancelationToken
 );
@@ -49,8 +49,17 @@ string GetRandomQuote()
     }
 }
 
+async Task Bot_OnError(ITelegramBotClient bot, Exception exception, CancellationToken ct)
+{
+    Console.WriteLine($"Error: {exception.Message}");
+}
+
 async Task Bot_OnMessage(ITelegramBotClient bot, Telegram.Bot.Types.Update update, CancellationToken ct)
 {
+    if (update.Message == null)
+    {
+        return;
+    }
     await bot.SendMessage(update.Message.Chat.Id, GetRandomQuote());    
 }
 
