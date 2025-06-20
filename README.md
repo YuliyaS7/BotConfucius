@@ -9,6 +9,7 @@
 ## Автори проєкту:
 - [Vasyl Kovalov](mailto:raid3r81@gmail.com)
 - Olena Yakovleva
+- reklama
 
 
 ## Як проєкт розгорнути та налаштувати
