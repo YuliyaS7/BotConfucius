@@ -10,6 +10,7 @@
 - [Vasyl Kovalov](mailto:raid3r81@gmail.com)
 - Olena Yakovleva
 - Mukola Gorbey (gorbejkola996@gmail.com)
+- [Yuliya Sirik](mailto:yuliya.sirik44@gmail.com]
 
 
 ## Як проєкт розгорнути та налаштувати
